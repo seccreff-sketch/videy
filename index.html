@@ -1,211 +1,232 @@
-export default {
-  async fetch(request) {
-    const html = `<!doctype html>
+`<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>🎬 Tonton Video</title>
+
   <style>
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Arial,Helvetica,sans-serif;
-      background:radial-gradient(circle at top,#151525,#0b0b10 55%);
-      color:#fff;
+    * {
+      box-sizing: border-box;
     }
-    .wrap{
-      max-width:860px;
-      margin:0 auto;
-      padding:20px;
+
+    body {
+      margin: 0;
+      padding: 16px;
+      background: #101018;
+      color: white;
+      font-family: Arial, sans-serif;
     }
-    .card{
-      background:rgba(20,20,32,.96);
-      border:1px solid #2a2f45;
-      border-radius:22px;
-      padding:18px;
-      box-shadow:0 20px 50px rgba(0,0,0,.35);
+
+    .box {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 16px;
+      background: #191927;
+      border-radius: 14px;
     }
-    h1{
-      margin:0 0 8px;
-      font-size:22px;
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
     }
-    p{
-      margin:0 0 16px;
-      color:#b9bfd0;
-      line-height:1.55;
+
+    p {
+      margin: 0 0 16px;
+      color: #bfc3d3;
+      line-height: 1.5;
     }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      text-decoration:none;
-      padding:14px 20px;
-      border-radius:14px;
-      background:linear-gradient(90deg,#ff4d5f,#ff2f92);
-      color:#fff;
-      font-weight:700;
-      border:0;
-      cursor:pointer;
-      transition:.2s transform ease,.2s opacity ease;
+
+    .banner {
+      width: 100%;
+      min-height: 250px;
+      margin: 16px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
     }
-    .btn:hover{transform:translateY(-1px)}
-    .btn.secondary{
-      background:#2a2f45;
-      margin-left:10px;
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 16px 0;
     }
-    .banner-slot{
-      margin:16px 0;
-      min-height:250px;
-      border:1px dashed #39405b;
-      border-radius:16px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:#8c93ab;
-      padding:12px;
-      overflow:hidden;
-      background:rgba(255,255,255,.02);
+
+    .button {
+      width: 100%;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #ff3366;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
     }
-    .player{
-      margin-top:18px;
-      position:relative;
-      background:#000;
-      border-radius:18px;
-      overflow:hidden;
-      border:1px solid #26263a;
-      aspect-ratio:16/9;
+
+    .button.gray {
+      background: #343449;
     }
-    .overlay{
-      position:absolute;
-      inset:0;
-      z-index:3;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:linear-gradient(180deg,rgba(0,0,0,.7),rgba(0,0,0,.82));
-      padding:20px;
+
+    .video-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
     }
-    .overlay-card{
-      width:min(440px,100%);
-      text-align:center;
-      background:rgba(17,17,26,.95);
-      border:1px solid #2a2f45;
-      border-radius:18px;
-      padding:22px;
-      box-shadow:0 18px 50px rgba(0,0,0,.35);
+
+    .video-frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: none;
     }
-    .overlay-card h2{
-      margin:0 0 10px;
-      font-size:18px;
+
+    .lock {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, .82);
+      text-align: center;
     }
-    .overlay-card p{
-      margin:0 0 16px;
-      font-size:14px;
-      color:#c5cbe0;
+
+    .lock-content {
+      width: 100%;
     }
-    .video-frame{
-      width:100%;
-      height:100%;
-      border:0;
-      display:none;
-      background:#000;
-      position:relative;
-      z-index:1;
+
+    .lock h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
     }
-    .note{
-      margin-top:12px;
-      font-size:12px;
-      color:#8c93ab;
+
+    .lock p {
+      font-size: 14px;
+    }
+
+    .small {
+      margin-top: 12px;
+      color: #8f94a8;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (min-width: 700px) {
+      body {
+        padding: 40px 16px;
+      }
+
+      .box {
+        padding: 24px;
+      }
+
+      .buttons {
+        flex-direction: row;
+      }
+
+      .button {
+        flex: 1;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>🎬 Tonton Video</h1>
-      <p>Klik tombol buka video dulu. Setelah itu kembali ke halaman ini, lalu video akan terbuka.</p>
+  <main class="box">
+    <h1>🎬 Tonton Video</h1>
 
-      <div class="banner-slot">
-        <script>
-          atOptions = {
-            'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-          };
-        </script>
-        <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
-      </div>
+    <p>
+      Klik tombol buka iklan terlebih dahulu.
+      Setelah kembali ke halaman ini, tekan tombol buka video.
+    </p>
 
+    <div class="banner">
+      <script>
+        atOptions = {
+          'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
+    </div>
+
+    <div class="buttons">
       <a
-        class="btn"
-        id="openAdBtn"
+        id="adButton"
+        class="button"
         href="https://www.effectivecpmnetwork.com/paig56k51s?key=3ef24098f954543c64765bd05fddc91d"
         target="_blank"
         rel="nofollow noopener noreferrer"
       >
-        ▶ Buka Video
+        ▶ Buka Iklan
       </a>
 
-      <a class="btn secondary" href="#video">Langsung ke Video</a>
-
-      <div id="video" class="player">
-        <div class="overlay" id="overlay">
-          <div class="overlay-card">
-            <h2>Video terkunci</h2>
-            <p>Silakan klik “Buka Video”, tunggu tab iklan terbuka, lalu kembali dan tekan tombol di bawah.</p>
-            <button class="btn" id="unlockBtn" type="button">Saya sudah kembali</button>
-          </div>
-        </div>
-
-        <iframe
-          id="videoFrame"
-          class="video-frame"
-          data-src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
-          allowfullscreen
-          allow="autoplay; fullscreen"
-        ></iframe>
-      </div>
-
-      <div class="note">
-        Banner ada di body, video dimuat hanya setelah unlock.
-      </div>
+      <button id="unlockButton" class="button gray" type="button">
+        🔒 Buka Video
+      </button>
     </div>
-  </div>
+
+    <div class="video-box">
+      <div id="lock" class="lock">
+        <div class="lock-content">
+          <h2>Video masih terkunci</h2>
+          <p>
+            Klik “Buka Iklan”, kembali ke halaman ini,
+            lalu tekan “Buka Video”.
+          </p>
+        </div>
+      </div>
+
+      <iframe
+        id="video"
+        class="video-frame"
+        data-src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
+        allow="fullscreen"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <div class="small">
+      Video akan dimuat setelah tombol buka video ditekan.
+    </div>
+  </main>
 
   <script>
-    const openAdBtn = document.getElementById('openAdBtn');
-    const unlockBtn = document.getElementById('unlockBtn');
-    const overlay = document.getElementById('overlay');
-    const frame = document.getElementById('videoFrame');
+    const adButton = document.getElementById("adButton");
+    const unlockButton = document.getElementById("unlockButton");
+    const lock = document.getElementById("lock");
+    const video = document.getElementById("video");
 
-    let adOpened = false;
-    const markOpened = () => {
-      adOpened = true;
-      localStorage.setItem('adOpened', '1');
-    };
+    adButton.addEventListener("click", function () {
+      sessionStorage.setItem("adClicked", "yes");
+    });
 
-    openAdBtn.addEventListener('click', markOpened);
+    unlockButton.addEventListener("click", function () {
+      const adClicked = sessionStorage.getItem("adClicked");
 
-    unlockBtn.addEventListener('click', () => {
-      if (!adOpened && localStorage.getItem('adOpened') !== '1') {
-        alert('Klik "Buka Video" dulu, lalu kembali ke halaman ini.');
+      if (adClicked !== "yes") {
+        alert("Klik tombol Buka Iklan terlebih dahulu.");
         return;
       }
-      frame.src = frame.dataset.src;
-      frame.style.display = 'block';
-      overlay.style.display = 'none';
-      localStorage.removeItem('adOpened');
+
+      video.src = video.dataset.src;
+      video.style.display = "block";
+      lock.style.display = "none";
+      unlockButton.textContent = "✓ Video Terbuka";
+      unlockButton.disabled = true;
     });
   </script>
 </body>
-</html>`;
-
-    return new Response(html, {
-      headers: { "content-type": "text/html;charset=UTF-8" }
-    });
-  }
-};
+</html>``
