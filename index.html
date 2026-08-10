@@ -7,6 +7,7 @@ export default {
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Tonton Video</title>
   <style>
+    *{box-sizing:border-box}
     body{
       margin:0;
       font-family:Arial,Helvetica,sans-serif;
@@ -25,15 +26,8 @@ export default {
       padding:18px;
       box-shadow:0 20px 50px rgba(0,0,0,.35);
     }
-    h1{
-      margin:0 0 10px;
-      font-size:22px;
-    }
-    p{
-      margin:0 0 16px;
-      color:#b9bfd0;
-      line-height:1.5;
-    }
+    h1{margin:0 0 10px;font-size:22px}
+    p{margin:0 0 16px;color:#b9bfd0;line-height:1.5}
     .btn{
       display:inline-block;
       text-decoration:none;
@@ -69,12 +63,39 @@ export default {
       overflow:hidden;
       border:1px solid #26263a;
       aspect-ratio:16/9;
+      position:relative;
     }
-    .player iframe{
+    .overlay{
+      position:absolute;
+      inset:0;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(0,0,0,.75);
+      padding:20px;
+    }
+    .overlay-card{
+      width:min(420px,100%);
+      text-align:center;
+      background:rgba(20,20,32,.9);
+      border:1px solid #2a2f45;
+      border-radius:18px;
+      padding:22px;
+    }
+    .overlay-card h2{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+    .overlay-card p{
+      margin:0 0 16px;
+      font-size:14px;
+    }
+    .video-frame{
       width:100%;
       height:100%;
       border:0;
-      display:block;
+      display:none;
       background:#000;
     }
     .note{
@@ -88,7 +109,7 @@ export default {
   <div class="wrap">
     <div class="card">
       <h1>Video Player</h1>
-      <p>Klik tombol di bawah untuk membuka iklan dulu. Setelah itu kamu bisa lanjut ke video di halaman ini.</p>
+      <p>Klik tombol di bawah untuk membuka iklan dulu. Setelah itu video baru bisa diputar.</p>
 
       <div class="banner-slot">
         <script>
@@ -105,6 +126,7 @@ export default {
 
       <a
         class="btn"
+        id="adBtn"
         href="https://www.effectivecpmnetwork.com/paig56k51s?key=3ef24098f954543c64765bd05fddc91d"
         target="_blank"
         rel="nofollow noopener noreferrer"
@@ -115,18 +137,53 @@ export default {
       <a class="btn secondary" href="#video">Langsung ke Video</a>
 
       <div id="video" class="player">
+        <div class="overlay" id="overlay">
+          <div class="overlay-card">
+            <h2>Video terkunci</h2>
+            <p>Klik “Tonton Video” untuk buka iklan dulu, lalu tombol play akan muncul.</p>
+            <button class="btn" id="unlockBtn" type="button">Buka Video</button>
+          </div>
+        </div>
+
         <iframe
-          src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
+          id="videoFrame"
+          class="video-frame"
+          data-src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
           allowfullscreen
           allow="autoplay; fullscreen"
         ></iframe>
       </div>
 
       <div class="note">
-        Kalau banner belum muncul, tunggu sebentar atau cek kode ad unit-nya.
+        Banner tetap di body, video iframe baru dipasang setelah tombol diklik.
       </div>
     </div>
   </div>
+
+  <script>
+    const unlockBtn = document.getElementById('unlockBtn');
+    const overlay = document.getElementById('overlay');
+    const frame = document.getElementById('videoFrame');
+    let unlocked = false;
+
+    unlockBtn.addEventListener('click', () => {
+      unlocked = true;
+      frame.src = frame.dataset.src;
+      frame.style.display = 'block';
+      overlay.style.display = 'none';
+    });
+
+    document.getElementById('adBtn').addEventListener('click', () => {
+      setTimeout(() => {
+        if (!unlocked) {
+          frame.src = frame.dataset.src;
+          frame.style.display = 'block';
+          overlay.style.display = 'none';
+          unlocked = true;
+        }
+      }, 1500);
+    });
+  </script>
 </body>
 </html>`;
 
