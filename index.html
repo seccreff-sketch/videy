@@ -30,10 +30,12 @@ export default {
       margin: 0 auto;
     }
 
+    /* Kotak bagian atas tetap dipakai */
     .top-card {
       width: 100%;
       padding: 18px;
       background: #191927;
+      border: 1px solid #2a2a3d;
       border-radius: 14px;
     }
 
@@ -71,7 +73,7 @@ export default {
       min-height: 48px;
       padding: 14px 16px;
       border: 0;
-      border-radius: 10px;
+      border-radius: 8px;
       background: #ff3366;
       color: #fff;
       font-size: 16px;
@@ -85,10 +87,14 @@ export default {
       background: #343449;
     }
 
-    /* VIDEO BENAR-BENAR DI LUAR TOP-CARD */
+    /* Bagian video polos tanpa kotak */
     .video-section {
       width: 100%;
-      margin-top: 28px;
+      margin-top: 34px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
     }
 
     .video-heading {
@@ -100,7 +106,11 @@ export default {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #000;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
       overflow: hidden;
     }
 
@@ -111,6 +121,8 @@ export default {
       height: 100%;
       display: none;
       border: 0;
+      border-radius: 0;
+      background: transparent;
     }
 
     .video-lock {
@@ -121,7 +133,9 @@ export default {
       justify-content: center;
       align-items: center;
       padding: 20px;
-      background: rgba(0, 0, 0, .86);
+      background: #000;
+      border: 0;
+      border-radius: 0;
       text-align: center;
     }
 
@@ -173,7 +187,7 @@ export default {
 <body>
   <main class="page">
 
-    <!-- KOTAK ATAS: HANYA JUDUL, IKLAN, DAN TOMBOL -->
+    <!-- KOTAK ATAS: TETAP ADA -->
     <section class="top-card">
       <h1>🎬 Tonton Video</h1>
 
@@ -192,6 +206,7 @@ export default {
             'params' : {}
           };
         </script>
+
         <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
       </div>
 
@@ -212,7 +227,7 @@ export default {
       </div>
     </section>
 
-    <!-- VIDEO PALING BAWAH, DI LUAR KOTAK ATAS -->
+    <!-- VIDEO PALING BAWAH: TANPA BORDER -->
     <section id="videoSection" class="video-section">
       <h2 class="video-heading">Video</h2>
 
@@ -220,6 +235,7 @@ export default {
         <div id="videoLock" class="video-lock">
           <div class="video-lock-content">
             <h2>Video masih terkunci</h2>
+
             <p>
               Klik “Buka Iklan”, kembali ke halaman ini,
               lalu tekan “Buka Video”.
