@@ -63,7 +63,7 @@ export default {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin: 18px 0;
+      margin: 18px 0 0;
     }
 
     .button {
@@ -88,10 +88,13 @@ export default {
     .video-section {
       width: 100%;
       margin-top: 24px;
+      padding: 16px;
+      background: #191927;
+      border-radius: 14px;
     }
 
     .video-title {
-      margin: 0 0 10px;
+      margin: 0 0 12px;
       font-size: 18px;
     }
 
@@ -100,7 +103,7 @@ export default {
       width: 100%;
       aspect-ratio: 16 / 9;
       background: #000;
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
     }
 
@@ -136,7 +139,7 @@ export default {
     }
 
     .lock p {
-      margin: 0 0 14px;
+      margin: 0;
       color: #c7cad8;
       font-size: 14px;
       line-height: 1.5;
@@ -155,7 +158,8 @@ export default {
         padding: 40px 16px;
       }
 
-      .card {
+      .card,
+      .video-section {
         padding: 24px;
       }
 
@@ -172,6 +176,8 @@ export default {
 
 <body>
   <main class="container">
+
+    <!-- BAGIAN IKLAN DAN TOMBOL -->
     <section class="card">
       <h1>🎬 Tonton Video</h1>
 
@@ -208,36 +214,38 @@ export default {
           🔒 Buka Video
         </button>
       </div>
+    </section>
 
-      <section id="videoSection" class="video-section">
-        <h2 class="video-title">Video</h2>
+    <!-- BAGIAN VIDEO TERPISAH -->
+    <section id="videoSection" class="video-section">
+      <h2 class="video-title">Video</h2>
 
-        <div class="video-box">
-          <div id="lock" class="lock">
-            <div class="lock-content">
-              <h2>Video masih terkunci</h2>
+      <div class="video-box">
+        <div id="lock" class="lock">
+          <div class="lock-content">
+            <h2>Video masih terkunci</h2>
 
-              <p>
-                Klik “Buka Iklan”, kembali ke halaman ini,
-                lalu tekan “Buka Video”.
-              </p>
-            </div>
+            <p>
+              Klik “Buka Iklan”, kembali ke halaman ini,
+              lalu tekan “Buka Video”.
+            </p>
           </div>
-
-          <iframe
-            id="videoFrame"
-            class="video-frame"
-            data-src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
-            allow="fullscreen"
-            allowfullscreen
-          ></iframe>
         </div>
-      </section>
+
+        <iframe
+          id="videoFrame"
+          class="video-frame"
+          data-src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
+          allow="fullscreen"
+          allowfullscreen
+        ></iframe>
+      </div>
 
       <p class="info">
         Video akan dimuat setelah tombol Buka Video ditekan.
       </p>
     </section>
+
   </main>
 
   <script>
@@ -245,6 +253,7 @@ export default {
     const unlockButton = document.getElementById("unlockButton");
     const lock = document.getElementById("lock");
     const videoFrame = document.getElementById("videoFrame");
+    const videoSection = document.getElementById("videoSection");
 
     adButton.addEventListener("click", function () {
       sessionStorage.setItem("adClicked", "yes");
@@ -265,7 +274,7 @@ export default {
       unlockButton.textContent = "✓ Video Terbuka";
       unlockButton.disabled = true;
 
-      document.getElementById("videoSection").scrollIntoView({
+      videoSection.scrollIntoView({
         behavior: "smooth",
         block: "start"
       });
