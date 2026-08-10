@@ -50,7 +50,7 @@
     }
     .banner-slot{
       margin:16px 0;
-      min-height:90px;
+      min-height:250px;
       border:1px dashed #39405b;
       border-radius:14px;
       display:flex;
@@ -59,6 +59,7 @@
       color:#8c93ab;
       padding:10px;
       overflow:hidden;
+      background:rgba(255,255,255,.02);
     }
     .player{
       margin-top:18px;
@@ -67,13 +68,11 @@
       overflow:hidden;
       border:1px solid #26263a;
       aspect-ratio:16/9;
-      display:flex;
-      align-items:center;
-      justify-content:center;
     }
-    video{
+    .player iframe{
       width:100%;
       height:100%;
+      border:0;
       display:block;
       background:#000;
     }
@@ -90,27 +89,45 @@
       <h1>Video Player</h1>
       <p>Klik tombol di bawah untuk membuka iklan dulu. Setelah itu kamu bisa lanjut ke video di halaman ini.</p>
 
-      <!-- TEMPAT BANNER ADSTERRA -->
-      <div class="<script>
-  atOptions = {
-    'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
-        ">
-        <!-- PASTE BANNER CODE HERE -->
-        Slot banner Adsterra
+      <div class="banner-slot">
+        <script>
+          atOptions = {
+            'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
       </div>
 
-      <!-- GANTI LINK INI DENGAN SMARTLINK ADSTERRA KAMU -->
       <a
         class="btn"
         href="https://www.effectivecpmnetwork.com/paig56k51s?key=3ef24098f954543c64765bd05fddc91d"
         target="_blank"
+        rel="nofollow noopener noreferrer"
+      >
+        Tonton Video
+      </a>
+
+      <a class="btn secondary" href="#video">Langsung ke Video</a>
+
+      <div id="video" class="player">
+        <iframe
+          src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
+          allowfullscreen
+          allow="autoplay; fullscreen"
+        ></iframe>
+      </div>
+
+      <div class="note">
+        Kalau banner belum muncul, coba tunggu beberapa detik atau cek apakah ad unit-nya sudah aktif.
+      </div>
+    </div>
+  </div>
+</body>
+</html>        target="_blank"
         rel="nofollow noopener noreferrer"
       >
         Tonton Video
