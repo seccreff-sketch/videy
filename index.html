@@ -24,13 +24,13 @@ export default {
       font-family: Arial, sans-serif;
     }
 
-    .container {
+    .page {
       width: 100%;
       max-width: 700px;
       margin: 0 auto;
     }
 
-    .card {
+    .top-card {
       width: 100%;
       padding: 18px;
       background: #191927;
@@ -63,7 +63,7 @@ export default {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin: 18px 0 0;
+      margin-top: 18px;
     }
 
     .button {
@@ -85,25 +85,22 @@ export default {
       background: #343449;
     }
 
+    /* VIDEO BENAR-BENAR DI LUAR TOP-CARD */
     .video-section {
       width: 100%;
-      margin-top: 24px;
-      padding: 16px;
-      background: #191927;
-      border-radius: 14px;
+      margin-top: 28px;
     }
 
-    .video-title {
+    .video-heading {
       margin: 0 0 12px;
       font-size: 18px;
     }
 
-    .video-box {
+    .video-area {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
       background: #000;
-      border-radius: 10px;
       overflow: hidden;
     }
 
@@ -112,33 +109,33 @@ export default {
       inset: 0;
       width: 100%;
       height: 100%;
-      border: 0;
       display: none;
+      border: 0;
     }
 
-    .lock {
+    .video-lock {
       position: absolute;
       inset: 0;
       z-index: 2;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 16px;
-      background: rgba(0, 0, 0, .84);
+      padding: 20px;
+      background: rgba(0, 0, 0, .86);
       text-align: center;
     }
 
-    .lock-content {
+    .video-lock-content {
       width: 100%;
       max-width: 360px;
     }
 
-    .lock h2 {
+    .video-lock h2 {
       margin: 0 0 8px;
       font-size: 18px;
     }
 
-    .lock p {
+    .video-lock p {
       margin: 0;
       color: #c7cad8;
       font-size: 14px;
@@ -158,8 +155,7 @@ export default {
         padding: 40px 16px;
       }
 
-      .card,
-      .video-section {
+      .top-card {
         padding: 24px;
       }
 
@@ -175,10 +171,10 @@ export default {
 </head>
 
 <body>
-  <main class="container">
+  <main class="page">
 
-    <!-- BAGIAN IKLAN DAN TOMBOL -->
-    <section class="card">
+    <!-- KOTAK ATAS: HANYA JUDUL, IKLAN, DAN TOMBOL -->
+    <section class="top-card">
       <h1>🎬 Tonton Video</h1>
 
       <p class="description">
@@ -216,15 +212,14 @@ export default {
       </div>
     </section>
 
-    <!-- BAGIAN VIDEO TERPISAH -->
+    <!-- VIDEO PALING BAWAH, DI LUAR KOTAK ATAS -->
     <section id="videoSection" class="video-section">
-      <h2 class="video-title">Video</h2>
+      <h2 class="video-heading">Video</h2>
 
-      <div class="video-box">
-        <div id="lock" class="lock">
-          <div class="lock-content">
+      <div class="video-area">
+        <div id="videoLock" class="video-lock">
+          <div class="video-lock-content">
             <h2>Video masih terkunci</h2>
-
             <p>
               Klik “Buka Iklan”, kembali ke halaman ini,
               lalu tekan “Buka Video”.
@@ -251,7 +246,7 @@ export default {
   <script>
     const adButton = document.getElementById("adButton");
     const unlockButton = document.getElementById("unlockButton");
-    const lock = document.getElementById("lock");
+    const videoLock = document.getElementById("videoLock");
     const videoFrame = document.getElementById("videoFrame");
     const videoSection = document.getElementById("videoSection");
 
@@ -269,7 +264,7 @@ export default {
 
       videoFrame.src = videoFrame.dataset.src;
       videoFrame.style.display = "block";
-      lock.style.display = "none";
+      videoLock.style.display = "none";
 
       unlockButton.textContent = "✓ Video Terbuka";
       unlockButton.disabled = true;
