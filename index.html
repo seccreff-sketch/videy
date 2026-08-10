@@ -1,17 +1,4 @@
-
-      <script>
-        atOptions = {
-          'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
-    `;
-
-    const html = `<!doctype html>
+<!doctype html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -41,6 +28,7 @@
       margin: 0 auto;
     }
 
+    /* Kotak bagian atas tetap dipakai */
     .top-card {
       width: 100%;
       padding: 18px;
@@ -97,6 +85,7 @@
       background: #343449;
     }
 
+    /* Bagian video polos tanpa kotak */
     .video-section {
       width: 100%;
       margin-top: 34px;
@@ -195,6 +184,8 @@
 
 <body>
   <main class="page">
+
+    <!-- KOTAK ATAS: TETAP ADA -->
     <section class="top-card">
       <h1>🎬 Tonton Video</h1>
 
@@ -204,7 +195,17 @@
       </p>
 
       <div class="banner">
-        ${banner}
+        <script>
+          atOptions = {
+            'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+
+        <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
       </div>
 
       <div class="buttons">
@@ -224,6 +225,7 @@
       </div>
     </section>
 
+    <!-- VIDEO PALING BAWAH: TANPA BORDER -->
     <section id="videoSection" class="video-section">
       <h2 class="video-heading">Video</h2>
 
@@ -231,6 +233,7 @@
         <div id="videoLock" class="video-lock">
           <div class="video-lock-content">
             <h2>Video masih terkunci</h2>
+
             <p>
               Klik “Buka Iklan”, kembali ke halaman ini,
               lalu tekan “Buka Video”.
@@ -251,6 +254,7 @@
         Video akan dimuat setelah tombol Buka Video ditekan.
       </p>
     </section>
+
   </main>
 
   <script>
