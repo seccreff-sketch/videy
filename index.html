@@ -1,8 +1,10 @@
-`<!doctype html>
+export default {
+  async fetch(request) {
+    const html = `<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🎬 Tonton Video</title>
 
   <style>
@@ -10,19 +12,27 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       padding: 16px;
       background: #101018;
-      color: white;
+      color: #fff;
       font-family: Arial, sans-serif;
     }
 
-    .box {
+    .container {
       width: 100%;
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto;
-      padding: 16px;
+    }
+
+    .card {
+      width: 100%;
+      padding: 18px;
       background: #191927;
       border-radius: 14px;
     }
@@ -32,8 +42,8 @@
       font-size: 22px;
     }
 
-    p {
-      margin: 0 0 16px;
+    .description {
+      margin: 0;
       color: #bfc3d3;
       line-height: 1.5;
     }
@@ -41,7 +51,7 @@
     .banner {
       width: 100%;
       min-height: 250px;
-      margin: 16px 0;
+      margin: 18px 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -49,28 +59,40 @@
     }
 
     .buttons {
+      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin: 16px 0;
+      margin: 18px 0;
     }
 
     .button {
       width: 100%;
-      padding: 14px;
+      min-height: 48px;
+      padding: 14px 16px;
       border: 0;
       border-radius: 10px;
       background: #ff3366;
-      color: white;
-      text-align: center;
-      text-decoration: none;
+      color: #fff;
       font-size: 16px;
       font-weight: bold;
+      text-align: center;
+      text-decoration: none;
       cursor: pointer;
     }
 
     .button.gray {
       background: #343449;
+    }
+
+    .video-section {
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .video-title {
+      margin: 0 0 10px;
+      font-size: 18px;
     }
 
     .video-box {
@@ -83,6 +105,8 @@
     }
 
     .video-frame {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       border: 0;
@@ -92,40 +116,46 @@
     .lock {
       position: absolute;
       inset: 0;
+      z-index: 2;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, .82);
+      padding: 16px;
+      background: rgba(0, 0, 0, .84);
       text-align: center;
     }
 
     .lock-content {
       width: 100%;
+      max-width: 360px;
     }
 
     .lock h2 {
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       font-size: 18px;
     }
 
     .lock p {
+      margin: 0 0 14px;
+      color: #c7cad8;
       font-size: 14px;
+      line-height: 1.5;
     }
 
-    .small {
-      margin-top: 12px;
-      color: #8f94a8;
+    .info {
+      margin: 12px 0 0;
+      color: #9297aa;
       font-size: 12px;
+      line-height: 1.4;
       text-align: center;
     }
 
-    @media (min-width: 700px) {
+    @media (min-width: 640px) {
       body {
         padding: 40px 16px;
       }
 
-      .box {
+      .card {
         padding: 24px;
       }
 
@@ -141,73 +171,80 @@
 </head>
 
 <body>
-  <main class="box">
-    <h1>🎬 Tonton Video</h1>
+  <main class="container">
+    <section class="card">
+      <h1>🎬 Tonton Video</h1>
 
-    <p>
-      Klik tombol buka iklan terlebih dahulu.
-      Setelah kembali ke halaman ini, tekan tombol buka video.
-    </p>
+      <p class="description">
+        Klik tombol buka iklan terlebih dahulu. Setelah kembali ke halaman ini,
+        tekan tombol buka video.
+      </p>
 
-    <div class="banner">
-      <script>
-        atOptions = {
-          'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
-    </div>
-
-    <div class="buttons">
-      <a
-        id="adButton"
-        class="button"
-        href="https://www.effectivecpmnetwork.com/paig56k51s?key=3ef24098f954543c64765bd05fddc91d"
-        target="_blank"
-        rel="nofollow noopener noreferrer"
-      >
-        ▶ Buka Iklan
-      </a>
-
-      <button id="unlockButton" class="button gray" type="button">
-        🔒 Buka Video
-      </button>
-    </div>
-
-    <div class="video-box">
-      <div id="lock" class="lock">
-        <div class="lock-content">
-          <h2>Video masih terkunci</h2>
-          <p>
-            Klik “Buka Iklan”, kembali ke halaman ini,
-            lalu tekan “Buka Video”.
-          </p>
-        </div>
+      <div class="banner">
+        <script>
+          atOptions = {
+            'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
       </div>
 
-      <iframe
-        id="video"
-        class="video-frame"
-        data-src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
-        allow="fullscreen"
-        allowfullscreen
-      ></iframe>
-    </div>
+      <div class="buttons">
+        <a
+          id="adButton"
+          class="button"
+          href="https://www.effectivecpmnetwork.com/paig56k51s?key=3ef24098f954543c64765bd05fddc91d"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+        >
+          ▶ Buka Iklan
+        </a>
 
-    <div class="small">
-      Video akan dimuat setelah tombol buka video ditekan.
-    </div>
+        <button id="unlockButton" class="button gray" type="button">
+          🔒 Buka Video
+        </button>
+      </div>
+
+      <section id="videoSection" class="video-section">
+        <h2 class="video-title">Video</h2>
+
+        <div class="video-box">
+          <div id="lock" class="lock">
+            <div class="lock-content">
+              <h2>Video masih terkunci</h2>
+
+              <p>
+                Klik “Buka Iklan”, kembali ke halaman ini,
+                lalu tekan “Buka Video”.
+              </p>
+            </div>
+          </div>
+
+          <iframe
+            id="videoFrame"
+            class="video-frame"
+            data-src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
+            allow="fullscreen"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </section>
+
+      <p class="info">
+        Video akan dimuat setelah tombol Buka Video ditekan.
+      </p>
+    </section>
   </main>
 
   <script>
     const adButton = document.getElementById("adButton");
     const unlockButton = document.getElementById("unlockButton");
     const lock = document.getElementById("lock");
-    const video = document.getElementById("video");
+    const videoFrame = document.getElementById("videoFrame");
 
     adButton.addEventListener("click", function () {
       sessionStorage.setItem("adClicked", "yes");
@@ -221,12 +258,26 @@
         return;
       }
 
-      video.src = video.dataset.src;
-      video.style.display = "block";
+      videoFrame.src = videoFrame.dataset.src;
+      videoFrame.style.display = "block";
       lock.style.display = "none";
+
       unlockButton.textContent = "✓ Video Terbuka";
       unlockButton.disabled = true;
+
+      document.getElementById("videoSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     });
   </script>
 </body>
-</html>``
+</html>`;
+
+    return new Response(html, {
+      headers: {
+        "content-type": "text/html; charset=UTF-8"
+      }
+    });
+  }
+};
