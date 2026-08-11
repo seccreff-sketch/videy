@@ -1,11 +1,10 @@
 export default {
   async fetch(request, env, ctx) {
-    const html = String.raw`<!doctype html>
+    const html = `<!doctype html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tonton video setelah mengunjungi halaman sponsor">
   <title>🎬 Tonton Video</title>
 
   <style>
@@ -31,23 +30,18 @@ export default {
       margin: 0 auto;
     }
 
-    .ad-label {
-      width: 100%;
-      margin: 0 0 7px;
-      color: #9b9daf;
+    .ad-title {
+      margin: 0 0 6px;
+      color: #999;
       font-size: 11px;
       text-align: center;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
 
-    .ad-label.bottom-label {
-      margin-top: 28px;
-    }
-
-    .ad-slot {
+    .ad-box {
       width: 100%;
       min-height: 250px;
+      margin-bottom: 24px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -57,22 +51,8 @@ export default {
       border-radius: 10px;
     }
 
-    .ad-slot iframe {
-      max-width: 100%;
-      border: 0;
-    }
-
-    .top-ad {
-      margin-bottom: 22px;
-    }
-
-    .bottom-ad {
-      margin-top: 28px;
-    }
-
-    .top-card {
-      width: 100%;
-      padding: 18px;
+    .card {
+      padding: 22px;
       background: #191927;
       border: 1px solid #2a2a3d;
       border-radius: 14px;
@@ -90,7 +70,6 @@ export default {
     }
 
     .buttons {
-      width: 100%;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -100,7 +79,7 @@ export default {
     .button {
       width: 100%;
       min-height: 48px;
-      padding: 14px 16px;
+      padding: 14px;
       border: 0;
       border-radius: 8px;
       background: #ff3366;
@@ -117,13 +96,12 @@ export default {
     }
 
     .button:disabled {
-      opacity: 0.65;
+      opacity: 0.6;
       cursor: not-allowed;
     }
 
     .video-section {
-      width: 100%;
-      margin-top: 34px;
+      margin-top: 32px;
     }
 
     .video-heading {
@@ -143,9 +121,9 @@ export default {
     .video-frame {
       position: absolute;
       inset: 0;
+      display: none;
       width: 100%;
       height: 100%;
-      display: none;
       border: 0;
     }
 
@@ -172,21 +150,13 @@ export default {
       line-height: 1.5;
     }
 
-    .notice {
-      margin-top: 12px;
-      color: #9b9daf;
-      font-size: 12px;
-      line-height: 1.5;
-      text-align: center;
+    .bottom-ad-title {
+      margin-top: 28px;
     }
 
     @media (min-width: 640px) {
       body {
         padding: 40px 16px;
-      }
-
-      .top-card {
-        padding: 24px;
       }
 
       .buttons {
@@ -203,27 +173,27 @@ export default {
 <body>
   <main class="page">
 
-    <!-- BANNER ATAS -->
-    <div class="ad-label">Advertisement</div>
-    <div class="ad-slot top-ad">
+    <div class="ad-title">Advertisement</div>
+
+    <div class="ad-box">
       <script>
         atOptions = {
-          'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
+          'key': 'e9da6473aaf8ead0262ee05934cc04e3',
+          'format': 'iframe',
+          'height': 250,
+          'width': 300,
+          'params': {}
         };
       </script>
       <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
     </div>
 
-    <section class="top-card">
+    <section class="card">
       <h1>🎬 Tonton Video</h1>
 
       <p class="description">
-        Kunjungi halaman sponsor terlebih dahulu. Setelah itu, kembali ke halaman ini
-        dan tekan tombol “Buka Video”.
+        Kunjungi halaman sponsor terlebih dahulu. Setelah itu,
+        kembali ke halaman ini dan tekan tombol “Buka Video”.
       </p>
 
       <div class="buttons">
@@ -245,10 +215,6 @@ export default {
           🔒 Buka Video
         </button>
       </div>
-
-      <p class="notice">
-        Tombol sponsor akan membuka halaman baru.
-      </p>
     </section>
 
     <section id="videoSection" class="video-section">
@@ -276,16 +242,16 @@ export default {
       </div>
     </section>
 
-    <!-- BANNER BAWAH -->
-    <div class="ad-label bottom-label">Advertisement</div>
-    <div class="ad-slot bottom-ad">
+    <div class="ad-title bottom-ad-title">Advertisement</div>
+
+    <div class="ad-box">
       <script>
         atOptions = {
-          'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
+          'key': 'e9da6473aaf8ead0262ee05934cc04e3',
+          'format': 'iframe',
+          'height': 250,
+          'width': 300,
+          'params': {}
         };
       </script>
       <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
@@ -303,17 +269,17 @@ export default {
     let sponsorVisited =
       sessionStorage.getItem("sponsorVisited") === "yes";
 
-    function updateButton() {
-      if (sponsorVisited) {
-        unlockButton.disabled = false;
-        unlockButton.textContent = "🔓 Buka Video";
-      }
+    if (sponsorVisited) {
+      unlockButton.disabled = false;
+      unlockButton.textContent = "🔓 Buka Video";
     }
 
     adButton.addEventListener("click", function () {
       sponsorVisited = true;
       sessionStorage.setItem("sponsorVisited", "yes");
-      updateButton();
+
+      unlockButton.disabled = false;
+      unlockButton.textContent = "🔓 Buka Video";
     });
 
     unlockButton.addEventListener("click", function () {
@@ -334,8 +300,6 @@ export default {
         block: "start"
       });
     });
-
-    updateButton();
   </script>
 </body>
 </html>`;
