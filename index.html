@@ -1,12 +1,22 @@
-<!doctype html>
+export default {
+  async fetch(request, env, ctx) {
+    const html = String.raw`<!doctype html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tonton video setelah mengunjungi halaman sponsor">
   <title>🎬 Tonton Video</title>
+
   <style>
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       padding: 16px;
@@ -14,11 +24,52 @@
       color: #fff;
       font-family: Arial, sans-serif;
     }
+
     .page {
       width: 100%;
       max-width: 700px;
       margin: 0 auto;
     }
+
+    .ad-label {
+      width: 100%;
+      margin: 0 0 7px;
+      color: #9b9daf;
+      font-size: 11px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ad-label.bottom-label {
+      margin-top: 28px;
+    }
+
+    .ad-slot {
+      width: 100%;
+      min-height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: #181824;
+      border: 1px solid #29293b;
+      border-radius: 10px;
+    }
+
+    .ad-slot iframe {
+      max-width: 100%;
+      border: 0;
+    }
+
+    .top-ad {
+      margin-bottom: 22px;
+    }
+
+    .bottom-ad {
+      margin-top: 28px;
+    }
+
     .top-card {
       width: 100%;
       padding: 18px;
@@ -26,12 +77,18 @@
       border: 1px solid #2a2a3d;
       border-radius: 14px;
     }
-    h1 { margin: 0 0 8px; font-size: 22px; }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
     .description {
       margin: 0;
       color: #bfc3d3;
       line-height: 1.5;
     }
+
     .buttons {
       width: 100%;
       display: flex;
@@ -39,6 +96,7 @@
       gap: 10px;
       margin-top: 18px;
     }
+
     .button {
       width: 100%;
       min-height: 48px;
@@ -53,22 +111,35 @@
       text-decoration: none;
       cursor: pointer;
     }
-    .button.gray { background: #343449; }
+
+    .button.gray {
+      background: #343449;
+    }
+
+    .button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
     .video-section {
       width: 100%;
       margin-top: 34px;
     }
+
     .video-heading {
       margin: 0 0 12px;
       font-size: 18px;
     }
+
     .video-area {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
       overflow: hidden;
       background: #000;
+      border-radius: 10px;
     }
+
     .video-frame {
       position: absolute;
       inset: 0;
@@ -77,6 +148,7 @@
       display: none;
       border: 0;
     }
+
     .video-lock {
       position: absolute;
       inset: 0;
@@ -88,21 +160,70 @@
       background: #000;
       text-align: center;
     }
+
+    .video-lock h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .video-lock p {
+      margin: 0;
+      color: #bfc3d3;
+      line-height: 1.5;
+    }
+
+    .notice {
+      margin-top: 12px;
+      color: #9b9daf;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
     @media (min-width: 640px) {
-      body { padding: 40px 16px; }
-      .top-card { padding: 24px; }
-      .buttons { flex-direction: row; }
-      .button { flex: 1; }
+      body {
+        padding: 40px 16px;
+      }
+
+      .top-card {
+        padding: 24px;
+      }
+
+      .buttons {
+        flex-direction: row;
+      }
+
+      .button {
+        flex: 1;
+      }
     }
   </style>
 </head>
+
 <body>
   <main class="page">
+
+    <!-- BANNER ATAS -->
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-slot top-ad">
+      <script>
+        atOptions = {
+          'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
+    </div>
+
     <section class="top-card">
       <h1>🎬 Tonton Video</h1>
+
       <p class="description">
-        Klik tombol buka iklan terlebih dahulu. Setelah kembali ke halaman ini,
-        tekan tombol buka video.
+        Kunjungi halaman sponsor terlebih dahulu. Setelah itu, kembali ke halaman ini
+        dan tekan tombol “Buka Video”.
       </p>
 
       <div class="buttons">
@@ -111,23 +232,36 @@
           class="button"
           href="https://www.effectivecpmnetwork.com/paig56k51s?key=3ef24098f954543c64765bd05fddc91d"
           target="_blank"
-          rel="nofollow noopener noreferrer"
+          rel="nofollow sponsored noopener noreferrer"
         >
-          ▶ Buka Iklan
+          🌐 Kunjungi Sponsor
         </a>
-        <button id="unlockButton" class="button gray" type="button">
+
+        <button
+          id="unlockButton"
+          class="button gray"
+          type="button"
+        >
           🔒 Buka Video
         </button>
       </div>
+
+      <p class="notice">
+        Tombol sponsor akan membuka halaman baru.
+      </p>
     </section>
 
     <section id="videoSection" class="video-section">
       <h2 class="video-heading">Video</h2>
+
       <div class="video-area">
         <div id="videoLock" class="video-lock">
           <div>
             <h2>Video masih terkunci</h2>
-            <p>Klik “Buka Iklan”, kembali ke halaman ini, lalu tekan “Buka Video”.</p>
+            <p>
+              Kunjungi sponsor, kembali ke halaman ini,
+              lalu tekan tombol “Buka Video”.
+            </p>
           </div>
         </div>
 
@@ -135,11 +269,28 @@
           id="videoFrame"
           class="video-frame"
           data-src="https://jumpshare.com/embed/Cf020RMwp0NWDUacjZSn"
+          title="Pemutar video"
           allow="fullscreen"
           allowfullscreen
         ></iframe>
       </div>
     </section>
+
+    <!-- BANNER BAWAH -->
+    <div class="ad-label bottom-label">Advertisement</div>
+    <div class="ad-slot bottom-ad">
+      <script>
+        atOptions = {
+          'key' : 'e9da6473aaf8ead0262ee05934cc04e3',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/e9da6473aaf8ead0262ee05934cc04e3/invoke.js"></script>
+    </div>
+
   </main>
 
   <script>
@@ -149,13 +300,25 @@
     const videoFrame = document.getElementById("videoFrame");
     const videoSection = document.getElementById("videoSection");
 
+    let sponsorVisited =
+      sessionStorage.getItem("sponsorVisited") === "yes";
+
+    function updateButton() {
+      if (sponsorVisited) {
+        unlockButton.disabled = false;
+        unlockButton.textContent = "🔓 Buka Video";
+      }
+    }
+
     adButton.addEventListener("click", function () {
-      sessionStorage.setItem("adClicked", "yes");
+      sponsorVisited = true;
+      sessionStorage.setItem("sponsorVisited", "yes");
+      updateButton();
     });
 
     unlockButton.addEventListener("click", function () {
-      if (sessionStorage.getItem("adClicked") !== "yes") {
-        alert("Klik tombol Buka Iklan terlebih dahulu.");
+      if (!sponsorVisited) {
+        alert("Silakan kunjungi sponsor terlebih dahulu.");
         return;
       }
 
@@ -171,12 +334,17 @@
         block: "start"
       });
     });
+
+    updateButton();
   </script>
 </body>
 </html>`;
 
     return new Response(html, {
-      headers: { "content-type": "text/html;charset=UTF-8" }
+      headers: {
+        "content-type": "text/html; charset=UTF-8",
+        "cache-control": "no-store"
+      }
     });
   }
 };
