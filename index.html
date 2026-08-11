@@ -165,6 +165,49 @@
         flex: 1;
       }
     }
+
+    /* ===== FLOATING BUBBLE AD ===== */
+    .floating-ad {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 9999;
+      max-width: 140px;
+    }
+
+    .floating-ad img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid #2a2a3d;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+    }
+
+    .floating-ad-close {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #ff3366;
+      color: #fff;
+      border: none;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 24px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    @media (max-width: 480px) {
+      .floating-ad {
+        max-width: 110px;
+        right: 8px;
+        bottom: 8px;
+      }
+    }
   </style>
 </head>
 
@@ -257,6 +300,20 @@
 
   </main>
 
+  <!-- ===== FLOATING BUBBLE AD ===== -->
+  <div id="floatingAd" class="floating-ad">
+    <button id="floatingAdClose" class="floating-ad-close" type="button" title="Tutup">×</button>
+    <a href="https://www.effectivecpmnetwork.com/paig56k51s?key=3ef24098f954543c64765bd05fddc91d" 
+       target="_blank" 
+       rel="nofollow sponsored noopener noreferrer">
+      <!-- GANTI src dengan URL gambar iklan kamu -->
+      <img src="https://via.placeholder.com/140x140/ff3366/ffffff?text=IKLAN" alt="Iklan">
+    </a>
+  </div>
+
+  <!-- ===== SCRIPT POPUNDER ADSTERRA ===== -->
+  <script src="https://pl30785679.effectivecpmnetwork.com/6e/47/fb/6e47fbaf75f202427e54eb8ec679508e.js"></script>
+
   <script>
     const adButton = document.getElementById("adButton");
     const unlockButton = document.getElementById("unlockButton");
@@ -280,12 +337,40 @@
       unlockButton.textContent = "🔓 Buka Video";
     });
 
+    // Flag agar popunder hanya sekali per sesi
+    let popunderShown = false;
+
     unlockButton.addEventListener("click", function () {
       if (!sponsorVisited) {
         alert("Silakan kunjungi tonton iklan terlebih dahulu.");
         return;
       }
 
+      // Munculkan popunder Adsterra saat klik "Buka Video"
+      if (!popunderShown) {
+        popunderShown = true;
+
+        // Panggil fungsi yang biasanya disediakan script Adsterra
+        // Kalau script Adsterra otomatis pakai klik apa saja,
+        // kita bisa trigger manual dengan membuat elemen klik dummy.
+        const dummy = document.createElement("a");
+        dummy.href = "#";
+        dummy.style.display = "none";
+        document.body.appendChild(dummy);
+
+        // Simulasi klik untuk memicu popunder
+        const event = new MouseEvent("click", {
+          view: window,
+          bubbles: true,
+          cancelable: true
+        });
+        dummy.dispatchEvent(event);
+
+        // Bersihkan elemen dummy
+        document.body.removeChild(dummy);
+      }
+
+      // Baru buka video
       videoFrame.src = videoFrame.dataset.src;
       videoFrame.style.display = "block";
       videoLock.style.display = "none";
@@ -298,6 +383,14 @@
         block: "start"
       });
     });
+
+    // ===== FLOATING AD CLOSE BUTTON =====
+    const floatingAd = document.getElementById("floatingAd");
+    const floatingAdClose = document.getElementById("floatingAdClose");
+
+    floatingAdClose.addEventListener("click", function () {
+      floatingAd.style.display = "none";
+    });
   </script>
 </body>
-</html>
+  </html>
